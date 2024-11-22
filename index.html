@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Maker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Odaine's Schedule Maker</h1>
+        <button id="darkModeToggle">🌙</button>
+        <div class="background-controls">
+            <button id="bgImageBtn" class="bg-btn">🖼️ Change Background</button>
+            <input type="file" id="bgImageInput" accept="image/*" style="display: none;">
+        </div>
+    </header>
+
+    <main>
+        <div id="calendar">
+            <div class="calendar-header">
+                <button id="prevMonth">←</button>
+                <h2 id="currentMonth">September 2023</h2>
+                <button id="nextMonth">→</button>
+            </div>
+            <div class="calendar-grid">
+                <div class="weekday-header">Sun</div>
+                <div class="weekday-header">Mon</div>
+                <div class="weekday-header">Tue</div>
+                <div class="weekday-header">Wed</div>
+                <div class="weekday-header">Thu</div>
+                <div class="weekday-header">Fri</div>
+                <div class="weekday-header">Sat</div>
+                <!-- Calendar days will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        <div id="task-list">
+            <h2>Tasks</h2>
+            <div class="task-input">
+                <div class="input-group">
+                    <label for="newTask">Task Title</label>
+                    <input type="text" id="newTask" placeholder="Task title">
+                    
+                    <label for="taskDescription">Task Description</label>
+                    <textarea id="taskDescription" placeholder="Task description"></textarea>
+                    
+                    <label for="taskDate">Due Date</label>
+                    <input type="datetime-local" id="taskDate">
+                    
+                    <label for="taskPriority">Priority</label>
+                    <select id="taskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    
+                    <label for="taskCategory">Category</label>
+                    <input type="text" id="taskCategory" placeholder="Enter category" list="categoryList">
+                    <datalist id="categoryList">
+                        <!-- Will be populated dynamically -->
+                    </datalist>
+                    <div class="reminder-group">
+                        <label for="reminderTime">Set Reminder</label>
+                        <select id="reminderTime">
+                            <option value="">No reminder</option>
+                            <option value="0">At time of event</option>
+                            <option value="5">5 minutes before</option>
+                            <option value="15">15 minutes before</option>
+                            <option value="30">30 minutes before</option>
+                            <option value="60">1 hour before</option>
+                            <option value="1440">1 day before</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="addTaskBtn">Add Task</button>
+            </div>
+            <div class="task-controls">
+                <div class="search-box">
+                    <input type="text" id="searchTasks" placeholder="Search tasks...">
+                </div>
+                <div class="filter-controls">
+                    <select id="filterPriority">
+                        <option value="">All Priorities</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <select id="filterCategory">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="filterStatus">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <ul id="taskItems"></ul>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+
+    <div class="music-player">
+        <audio id="audioPlayer"></audio>
+        <div class="music-controls">
+            <div class="music-main-controls">
+                <input type="file" id="musicInput" accept="audio/*,.mp3,.wav,.ogg,.m4a" multiple style="display: none;">
+                <button id="uploadMusic" class="music-btn" title="Upload Music">📁</button>
+                <button id="previousTrack" class="music-btn" disabled title="Previous Track">⏮️</button>
+                <button id="playPauseBtn" class="music-btn" disabled title="Play/Pause">▶️</button>
+                <button id="nextTrack" class="music-btn" disabled title="Next Track">⏭️</button>
+                <button id="toggleRepeat" class="music-btn" title="Repeat">🔁</button>
+                <button id="toggleShuffle" class="music-btn" title="Shuffle">🔀</button>
+            </div>
+            
+            <div class="track-progress">
+                <span id="currentTime">0:00</span>
+                <div class="progress-bar">
+                    <div id="progressFill"></div>
+                </div>
+                <span id="duration">0:00</span>
+            </div>
+            
+            <div class="volume-control">
+                <button id="toggleMute" class="music-btn" title="Mute">🔊</button>
+                <input type="range" id="volumeSlider" min="0" max="100" value="100" title="Volume">
+            </div>
+        </div>
+        
+        <div class="playlist-section">
+            <div class="playlist-header">
+                <h3>Playlist</h3>
+                <button id="clearPlaylist" class="music-btn" title="Clear Playlist">🗑️</button>
+            </div>
+            <ul id="playlist"></ul>
+        </div>
+    </div>
+</body>
+</html> 
